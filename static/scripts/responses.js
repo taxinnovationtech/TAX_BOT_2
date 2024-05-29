@@ -102,7 +102,6 @@ function getBotResponse(input, numPergunta) {
         return "Qual o valor da folha de pagamento anual aproximada? Caso não souber, basta digitar 0.";
     } else if (numPergunta == 7) {
         update["folhaDePagamento"] = input;
-
         fetch('https://api-chat.taxchatbot.click/comerciais/email/' + update['comercial']['email']).then(resp => resp.json())
                 .then(r => {
 
@@ -154,9 +153,17 @@ function getBotResponse(input, numPergunta) {
                         fetch('https://api-chat.taxchatbot.click/comerciais', options).then(resp => resp.json())
                         .then(c => {
                             
+                            var options = {
+                                method: 'POST',
+                                headers: {
+                                'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(update),
+                            };
                             update['comercial'] = c;
-                            if (flag_atualizacao == 'nao')
+                            if (flag_atualizacao == 'nao'){
                                 fetch('https://api-chat.taxchatbot.click/empresas', options).catch(e => {console.log(e);});
+                            }
                             else {
                                 fetch('https://api-chat.taxchatbot.click/empresas/cnpj/' + update['cnpj']).then(resp => resp.json())
                                 .then(r => {
@@ -182,8 +189,8 @@ function getBotResponse(input, numPergunta) {
                     
         }).catch(e => {console.log(e);});
         
-
         return "Obrigado pelas informações. A TAXINNOVATION IA irá analisar e assim que o processo terminar vamos retorna a você. Obrigado pela preferência.";
+        
     }
 
 }
