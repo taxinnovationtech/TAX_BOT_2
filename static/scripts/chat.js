@@ -201,6 +201,13 @@ function getHardResponse(userText) {
                 }
             }
         }
+
+        if (botResponse == 'Aguarde um pouco...') {
+            setTimeout(() => {
+                exibeChat('Obrigado pelas informações. A TAXINNOVATION IA irá analisar e assim que o processo terminar vamos retorna a você. Obrigado pela preferência.');
+             }, 5000);
+            
+        }
         
     }
     

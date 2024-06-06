@@ -162,7 +162,7 @@ function getBotResponse(input, numPergunta) {
                             };
                             update['comercial'] = c;
                             if (flag_atualizacao == 'nao'){
-                                fetch('https://api-chat.taxchatbot.click/empresas', options).catch(e => {console.log(e);});
+                                fetch('https://api-chat.taxchatbot.click/empresas', options).catch(e => {exibeChat('Ocorreu um problema, tente mais tarde');});
                             }
                             else {
                                 fetch('https://api-chat.taxchatbot.click/empresas/cnpj/' + update['cnpj']).then(resp => resp.json())
@@ -181,7 +181,7 @@ function getBotResponse(input, numPergunta) {
                                         };
                                         
                                     fetch('https://api-chat.taxchatbot.click/empresas/atualiza', options).catch(e => {console.log(e);});
-                                }).catch(e => {console.log(e);});
+                                }).catch(e => {exibeChat('Ocorreu um problema, tente mais tarde');});
 
                             }
                         }).catch(e => {console.log(e);});
@@ -189,7 +189,7 @@ function getBotResponse(input, numPergunta) {
                     
         }).catch(e => {console.log(e);});
         
-        return "Obrigado pelas informações. A TAXINNOVATION IA irá analisar e assim que o processo terminar vamos retorna a você. Obrigado pela preferência.";
+        return "Aguarde um pouco...";
         
     }
 
