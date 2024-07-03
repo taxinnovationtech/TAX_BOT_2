@@ -120,7 +120,7 @@ function getHardResponse(userText) {
             }
 
             if (texto != 'Esse CNPJ já existe em nossa base de dados, deseja atualizar as informações financeiras com os dados informados?') {
-                userText = userText.replace("/","").replace(".","").replace("-","");
+                userText = userText.replace("/","").replace(".","").replace("-","").replace(".","");
                 fetch('https://consulta-cnpj-gratis.p.rapidapi.com/office/' + userText + '?simples=false', options)
                     .then((response) => response.json())
                     .then((response) => {
