@@ -27,7 +27,7 @@ function getBotResponse(input, numPergunta) {
     } else if (numPergunta == 1) {
         resposta = validacaoEmail(input);
         if (resposta != 'Email inválido') {
-            update["comercial"]["email"] = input;
+            update["comercial"]["email"] = input.toLowerCase();
             document.getElementById("textInput").type = "text";
             formataCnpj(numPergunta);
             document.getElementById("textInput").placeholder = "XX.XXX.XXX/XXXX-XX";
