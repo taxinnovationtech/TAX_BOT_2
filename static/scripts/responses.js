@@ -47,7 +47,8 @@ function getBotResponse(input, numPergunta) {
             update["cnpj"] = cnpj_tratado.replace(".","");
             
 
-                fetch('https://api-chat.taxchatbot.click/empresas/cnpj/' + update['cnpj']).then(resp => resp.json())
+                /*fetch('https://api-chat.taxchatbot.click/empresas/cnpj/' + update['cnpj']).then(resp => resp.json())*/
+                fetch('https://cpro50850.publiccloud.com.br/empresas/cnpj/' + update['cnpj']).then(resp => resp.json())
                 .then(r => {
 
                         if(r['id'] != null){
@@ -102,7 +103,8 @@ function getBotResponse(input, numPergunta) {
         return "Qual o valor da folha de pagamento anual aproximada? Caso não souber, basta digitar 0.";
     } else if (numPergunta == 7) {
         update["folhaDePagamento"] = input;
-        fetch('https://api-chat.taxchatbot.click/comerciais/email/' + update['comercial']['email']).then(resp => resp.json())
+        /*fetch('https://api-chat.taxchatbot.click/comerciais/email/' + update['comercial']['email']).then(resp => resp.json())*/
+                fetch('https://cpro50850.publiccloud.com.br/comerciais/email/' + update['comercial']['email']).then(resp => resp.json())
                 .then(r => {
 
                     if (r['id'] != null ){
@@ -119,9 +121,11 @@ function getBotResponse(input, numPergunta) {
                             };
                 
                             if (flag_atualizacao == 'nao')
-                                fetch('https://api-chat.taxchatbot.click/empresas', options).catch(e => {console.log(e);});
+                                /*fetch('https://api-chat.taxchatbot.click/empresas', options).catch(e => {console.log(e);});*/
+                                fetch('https://cpro50850.publiccloud.com.br/empresas', options).catch(e => {console.log(e);});
                             else {
-                                fetch('https://api-chat.taxchatbot.click/empresas/cnpj/' + update['cnpj']).then(resp => resp.json())
+                                /*fetch('https://api-chat.taxchatbot.click/empresas/cnpj/' + update['cnpj']).then(resp => resp.json())*/
+                                fetch('https://cpro50850.publiccloud.com.br/empresas/cnpj/' + update['cnpj']).then(resp => resp.json())
                                 .then(r => {
 
                                     r['faturamentoAnual'] = parseFloat(update['faturamentoAnual'].toString().replace('.', '').replace('.','').replace('.','').replace(',','.'));
@@ -136,7 +140,8 @@ function getBotResponse(input, numPergunta) {
                                         body: JSON.stringify(r),
                                         };
 
-                                    fetch('https://api-chat.taxchatbot.click/empresas/atualiza', options).catch(e => {console.log(e);});
+                                    /*fetch('https://api-chat.taxchatbot.click/empresas/atualiza', options).catch(e => {console.log(e);});*/
+                                    fetch('https://cpro50850.publiccloud.com.br/empresas/atualiza', options).catch(e => {console.log(e);});
                                 }).catch(e => {console.log(e);});
                                 
                             }
@@ -150,7 +155,8 @@ function getBotResponse(input, numPergunta) {
                             body: JSON.stringify(update['comercial']),
                         };
                         
-                        fetch('https://api-chat.taxchatbot.click/comerciais', options).then(resp => resp.json())
+                        /*fetch('https://api-chat.taxchatbot.click/comerciais', options).then(resp => resp.json())*/
+                        fetch('https://cpro50850.publiccloud.com.br/comerciais', options).then(resp => resp.json())
                         .then(c => {
                             
                             var options = {
@@ -162,10 +168,12 @@ function getBotResponse(input, numPergunta) {
                             };
                             update['comercial'] = c;
                             if (flag_atualizacao == 'nao'){
-                                fetch('https://api-chat.taxchatbot.click/empresas', options).catch(e => {exibeChat('Ocorreu um problema, tente mais tarde');});
+                                /*fetch('https://api-chat.taxchatbot.click/empresas', options).catch(e => {exibeChat('Ocorreu um problema, tente mais tarde');});*/
+                                fetch('https://cpro50850.publiccloud.com.br/empresas', options).catch(e => {exibeChat('Ocorreu um problema, tente mais tarde');});
                             }
                             else {
-                                fetch('https://api-chat.taxchatbot.click/empresas/cnpj/' + update['cnpj']).then(resp => resp.json())
+                                /*fetch('https://api-chat.taxchatbot.click/empresas/cnpj/' + update['cnpj']).then(resp => resp.json())*/
+                                fetch('https://cpro50850.publiccloud.com.br/empresas/cnpj/' + update['cnpj']).then(resp => resp.json())
                                 .then(r => {
 
                                     r['faturamentoAnual'] = parseFloat(update['faturamentoAnual'].toString().replace('.', '').replace('.','').replace('.','').replace(',','.'));
@@ -180,7 +188,8 @@ function getBotResponse(input, numPergunta) {
                                         body: JSON.stringify(r),
                                         };
                                         
-                                    fetch('https://api-chat.taxchatbot.click/empresas/atualiza', options).catch(e => {console.log(e);});
+                                    /*fetch('https://api-chat.taxchatbot.click/empresas/atualiza', options).catch(e => {console.log(e);});*/
+                                    fetch('https://cpro50850.publiccloud.com.br/empresas/atualiza', options).catch(e => {console.log(e);});
                                 }).catch(e => {exibeChat('Ocorreu um problema, tente mais tarde');});
 
                             }
